@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panadería La Desesperanza</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="estilo_deseperanzaa_BHR.css">
+    
+    <link rel="icon" href="data:,">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand logo-font" href="#">La Desesperanza</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" data-i18n="nav-home">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#productos" data-i18n="nav-products">Productos</a>
+                    </li>
+                    <li class="nav-item" id="nav-gestion" style="display: none;">
+                        <a class="nav-link" href="#gestion" data-i18n="nav-manage">Gestión</a>
+                    </li>
+                    <li class="nav-item">
+                        <button class="btn btn-outline-light ms-2 position-relative" data-bs-toggle="modal" data-bs-target="#cartModal">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span id="cart-count" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.7em;">0</span>
+                        </button>
+                    </li>
+                    <li class="nav-item" id="nav-login-item">
+                        <button class="btn btn-outline-light ms-2" data-bs-toggle="modal" data-bs-target="#loginTypeModal">
+                            <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
+                        </button>
+                    </li>
+                    <li class="nav-item" id="nav-user-info" style="display: none;">
+                        <div class="d-flex align-items-center ms-2">
+                            <span class="text-light me-2">
+                                <i class="fas fa-user-circle"></i> 
+                                <span id="user-name">Usuario</span>
+                                <span id="user-role" class="badge bg-success ms-1">Cliente</span>
+                            </span>
+                            <button class="btn btn-sm btn-outline-light" id="btn-logout">
+                                <i class="fas fa-sign-out-alt"></i> Salir
+                            </button>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLang" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-globe"></i> Idioma
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="#" data-lang="es">🇲🇽 Español</a></li>
+                            <li><a class="dropdown-item" href="#" data-lang="en">🇺🇸 English</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="text-center py-5">
+        <div class="container">
+            <h1 class="seasonal-title" data-i18n="header-title">Panadería La Desesperanza</h1>
+            <p class="lead" data-i18n="header-lead">Delicias de temporada para Día de Muertos y Halloween</p>
+        </div>
+    </header>
+
+    <section id="productos" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-4" data-i18n="section-title-products">Nuestros Productos de Temporada</h2>
+
+            <div class="text-center mb-4">
+                <button id="btnDiaMuertos" type="button" class="btn me-2 active" data-i18n="btn-day-dead">Día de Muertos (10 Productos)</button>
+                <button id="btnHalloween" type="button" class="btn" data-i18n="btn-halloween">Halloween (10 Productos)</button>
+            </div>
+
+            <div id="productosDiaMuertos" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                <div class="col">
+                    <div class="card h-100 product-card">
+                        <img src="img/pan_muerto.jpg" class="card-img-top" alt="Pan de Muerto Tradicional">
+                        <div class="card-body">
+                            <h5 class="card-title" data-product-id="1" data-i18n-key="name">Pan de Muerto Tradicional</h5>
+                            <p class="card-text" data-product-id="1" data-i18n-key="desc">El clásico pan de muerto con sabor a naranja y azahar, espolvoreado con azúcar.</p>
+                            <p class="card-text"><strong>Precio:</strong> $25.00 MXN</p>
+                            <p class="card-text"><small class="text-muted">Inventario: 50</small></p>
+                        </div>
+                        <div class="card-footer text-center">
+                             <button class="btn btn-sm btn-outline-secondary btn-details" data-bs-toggle="modal" data-bs-target="#detailsModal" data-product-id="1" data-i18n="card-btn-details">Ver Detalles</button>
+                             <button class="btn btn-sm btn-success add-to-cart-btn" data-nombre="Pan de Muerto Tradicional" data-precio="25.00" data-product-id="1" data-i18n="card-btn-add">Añadir al Carrito</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 product-card">
+                        <img src="img/pan_muerto_relleno.jpg" class="card-img-top" alt="Pan de Muerto Relleno">
+                        <div class="card-body">
+                            <h5 class="card-title" data-product-id="2" data-i18n-key="name">Pan de Muerto Relleno</h5>
+                            <p class="card-text" data-product-id="2" data-i18n-key="desc">Nuestro delicioso pan de muerto relleno de nata fresca o crema pastelera.</p>
+                            <p class="card-text"><strong>Precio:</strong> $35.00 MXN</p>
+                            <p class="card-text"><small class="text-muted">Inventario: 30</small></p>
+                        </div>
+                        <div class="card-footer text-center">
+                             <button class="btn btn-sm btn-outline-secondary btn-details" data-bs-toggle="modal" data-bs-target="#detailsModal" data-product-id="2" data-i18n="card-btn-details">Ver Detalles</button>
+                             <button class="btn btn-sm btn-success add-to-cart-btn" data-nombre="Pan de Muerto Relleno" data-precio="35.00" data-product-id="2" data-i18n="card-btn-add">Añadir al Carrito</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 product-card">
+                        <img src="img/concha_calavera.jpg" class="card-img-top" alt="Concha Calavera">
+                        <div class="card-body">
+                            <h5 class="card-title" data-product-id="3" data-i18n-key="name">Concha Calavera</h5>
+                            <p class="card-text" data-product-id="3" data-i18n-key="desc">Concha tradicional decorada con motivos de calavera de azúcar.</p>
+                            <p class="card-text"><strong>Precio:</strong> $15.00 MXN</p>
+                            <p class="card-text"><small class="text-muted">Inventario: 80</small></p>
+                        </div>
+                        <div class="card-footer text-center">
+                             <button class="btn btn-sm btn-outline-secondary btn-details" data-bs-toggle="modal" data-bs-target="#detailsModal" data-product-id="3" data-i18n="card-btn-details">Ver Detalles</button>
+                             <button class="btn btn-sm btn-success add-to-cart-btn" data-nombre="Concha Calavera" data-precio="15.00" data-product-id="3" data-i18n="card-btn-add">Añadir al Carrito</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 product-card">
+                        <img src="img/bollos_florales.jpg" class="card-img-top" alt="Bollos Florales">
+                        <div class="card-body">
+                            <h5 class="card-title" data-product-id="4" data-i18n-key="name">Bollos Florales</h5>
+                            <p class="card-text" data-product-id="4" data-i18n-key="desc">Suaves bollos dulces decorados con flores de cempasúchil comestibles.</p>
+                            <p class="card-text"><strong>Precio:</strong> $20.00 MXN c/u</p>
+                            <p class="card-text"><small class="text-muted">Inventario: 45</small></p>
+                        </div>
+                        <div class="card-footer text-center">
+                             <button class="btn btn-sm btn-outline-secondary btn-details" data-bs-toggle="modal" data-bs-target="#detailsModal" data-product-id="4" data-i18n="card-btn-details">Ver Detalles</button>
+                             <button class="btn btn-sm btn-success add-to-cart-btn" data-nombre="Bollos Florales" data-precio="20.00" data-product-id="4" data-i18n="card-btn-add">Añadir al Carrito</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 product-card">
+                        <img src="img/cuerno.jpg" class="card-img-top" alt="Cuerno">
+                        <div class="card-body">
+                            <h5 class="card-title" data-product-id="5" data-i18n-key="name">Cuerno</h5>
+                            <p class="card-text" data-product-id="5" data-i18n-key="desc">Clásico pan de masa hojaldrada en forma de media luna.</p>
+                            <p class="card-text"><strong>Precio:</strong> $12.00 MXN</p>
+                            <p class="card-text"><small class="text-muted">Inventario: 70</small></p>
+                        </div>
+                        <div class="card-footer text-center">
+                             <button class="btn btn-sm btn-outline-secondary btn-details" data-bs-toggle="modal" data-bs-target="#detailsModal" data-product-id="5" data-i18n="card-btn-details">Ver Detalles</button>
+                             <button class="btn btn-sm btn-success add-to-cart-btn" data-nombre="Cuerno" data-precio="12.00" data-product-id="5" data-i18n="card-btn-add">Añadir al Carrito</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 product-card">
+                        <img src="img/oreja.jpg" class="card-img-top" alt="Oreja">
+                        <div class="card-body">
+                            <h5 class="card-title" data-product-id="6" data-i18n-key="name">Oreja</h5>
+                            <p class="card-text" data-product-id="6" data-i18n-key="desc">Pan crujiente de hojaldre caramelizado con azúcar.</p>
+                            <p class="card-text"><strong>Precio:</strong> $14.00 MXN</p>
+                            <p class="card-text"><small class="text-muted">Inventario: 65</small></p>
+                        </div>
+                        <div class="card-footer text-center">
+                             <button class="btn btn-sm btn-outline-secondary btn-details" data-bs-toggle="modal" data-bs-target="#detailsModal" data-product-id="6" data-i18n="card-btn-details">Ver Detalles</button>
+                             <button class="btn btn-sm btn-success add-to-cart-btn" data-nombre="Oreja" data-precio="14.00" data-product-id="6" data-i18n="card-btn-add">Añadir al Carrito</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 product-card">
+                        <img src="img/bigote.jpg" class="card-img-top" alt="Bigote">
+                        <div class="card-body">
+                            <h5 class="card-title" data-product-id="7" data-i18n-key="name">Bigote</h5>
+                            <p class="card-text" data-product-id="7" data-i18n-key="desc">Pan dulce alargado cubierto de azúcar, a veces con relleno.</p>
+                            <p class="card-text"><strong>Precio:</strong> $13.00 MXN</p>
+                            <p class="card-text"><small class="text-muted">Inventario: 55</small></p>
+                        </div>
+                        <div class="card-footer text-center">
+                             <button class="btn btn-sm btn-outline-secondary btn-details" data-bs-toggle="modal" data-bs-target="#detailsModal" data-product-id="7" data-i18n="card-btn-details">Ver Detalles</button>
+                             <button class="btn btn-sm btn-success add-to-cart-btn" data-nombre="Bigote" data-precio="13.00" data-product-id="7" data-i18n="card-btn-add">Añadir al Carrito</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 product-card">
+                        <img src="img/campechana.jpg" class="card-img-top" alt="Campechana">
+                        <div class="card-body">
+                            <h5 class="card-title" data-product-id="8" data-i18n-key="name">Campechana</h5>
+                            <p class="card-text" data-product-id="8" data-i18n-key="desc">Hojaldre rectangular, crujiente y glaseado.</p>
+                            <p class="card-text"><strong>Precio:</strong> $16.00 MXN</p>
+                            <p class="card-text"><small class="text-muted">Inventario: 60</small></p>
+                        </div>
+                        <div class="card-footer text-center">
+                             <button class="btn btn-sm btn-outline-secondary btn-details" data-bs-toggle="modal" data-bs-target="#detailsModal" data-product-id="8" data-i18n="card-btn-details">Ver Detalles</button>
+                             <button class="btn btn-sm btn-success add-to-cart-btn" data-nombre="Campechana" data-precio="16.00" data-product-id="8" data-i18n="card-btn-add">Añadir al Carrito</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 product-card">
+                        <img src="img/chilindrina.jpg" class="card-img-top" alt="Chilindrina">
+                        <div class="card-body">
+                            <h5 class="card-title" data-product-id="9" data-i18n-key="name">Chilindrina</h5>
+                            <p class="card-text" data-product-id="9" data-i18n-key="desc">Pan tipo bizcocho cubierto con bolitas de azúcar morena.</p>
+                            <p class="card-text"><strong>Precio:</strong> $10.00 MXN</p>
+                            <p class="card-text"><small class="text-muted">Inventario: 75</small></p>
+                        </div>
+                        <div class="card-footer text-center">
+                             <button class="btn btn-sm btn-outline-secondary btn-details" data-bs-toggle="modal" data-bs-target="#detailsModal" data-product-id="9" data-i18n="card-btn-details">Ver Detalles</button>
+                             <button class="btn btn-sm btn-success add-to-cart-btn" data-nombre="Chilindrina" data-precio="10.00" data-product-id="9" data-i18n="card-btn-add">Añadir al Carrito</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 product-card">
+                        <img src="img/rebanada.jpg" class="card-img-top" alt="Rebanada">
+                        <div class="card-body">
+                            <h5 class="card-title" data-product-id="10" data-i18n-key="name">Rebanada</h5>
+                            <p class="card-text" data-product-id="10" data-i18n-key="desc">Rebanada de panqué o pan tostado con mantequilla y azúcar.</p>
+                            <p class="card-text"><strong>Precio:</strong> $8.00 MXN</p>
+                            <p class="card-text"><small class="text-muted">Inventario: 90</small></p>
+                        </div>
+                        <div class="card-footer text-center">
+                             <button class="btn btn-sm btn-outline-secondary btn-details" data-bs-toggle="modal" data-bs-target="#detailsModal" data-product-id="10" data-i18n="card-btn-details">Ver Detalles</button>
+                             <button class="btn btn-sm btn-success add-to-cart-btn" data-nombre="Rebanada" data-precio="8.00" data-product-id="10" data-i18n="card-btn-add">Añadir al Carrito</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="productosHalloween" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 d-none">
+                <div class="col">
+                    <div class="card h-100 product-card">
+                        <img src="img/muffin_calabaza.jpg" class="card-img-top" alt="Muffin de Calabaza">
+                        <div class="card-body">
+                            <h5 class="card-title" data-product-id="11" data-i18n-key="name">Muffin Monstruoso de Calabaza</h5>
+                            <p class="card-text" data-product-id="11" data-i18n-key="desc">Esponjoso muffin de calabaza con especias y decoración terrorífica.</p>
+                            <p class="card-text"><strong>Precio:</strong> $30.00 MXN</p>
+                            <p class="card-text"><small class="text-muted">Inventario: 40</small></p>
+                        </div>
+                        <div class="card-footer text-center">
+                             <button class="btn btn-sm btn-outline-secondary btn-details" data-bs-toggle="modal" data-bs-target="#detailsModal" data-product-id="11" data-i18n="card-btn-details">Ver Detalles</button>
+                             <button class="btn btn-sm btn-success add-to-cart-btn" data-nombre="Muffin Monstruoso de Calabaza" data-precio="30.00" data-product-id="11" data-i18n="card-btn-add">Añadir al Carrito</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 product-card">
+                        <img src="img/galleta_telarana.jpg" class="card-img-top" alt="Galleta Telaraña">
+                        <div class="card-body">
+                            <h5 class="card-title" data-product-id="12" data-i18n-key="name">Galleta Telaraña</h5>
+                            <p class="card-text" data-product-id="12" data-i18n-key="desc">Crujiente galleta de mantequilla decorada con chocolate en forma de telaraña.</p>
+                            <p class="card-text"><strong>Precio:</strong> $18.00 MXN</p>
+                            <p class="card-text"><small class="text-muted">Inventario: 60</small></p>
+                        </div>
+                        <div class="card-footer text-center">
+                             <button class="btn btn-sm btn-outline-secondary btn-details" data-bs-toggle="modal" data-bs-target="#detailsModal" data-product-id="12" data-i18n="card-btn-details">Ver Detalles</button>
+                             <button class="btn btn-sm btn-success add-to-cart-btn" data-nombre="Galleta Telaraña" data-precio="18.00" data-product-id="12" data-i18n="card-btn-add">Añadir al Carrito</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 product-card">
+                        <img src="img/pumpkin_bread.jpg" class="card-img-top" alt="Pan de Calabaza">
+                        <div class="card-body">
+                            <h5 class="card-title" data-product-id="13" data-i18n-key="name">Panqué de Calabaza Especiado</h5>
+                            <p class="card-text" data-product-id="13" data-i18n-key="desc">Clásico panqué de calabaza húmedo con canela, nuez moscada y jengibre.</p>
+                            <p class="card-text"><strong>Precio:</strong> $120.00 MXN (Entero)</p>
+                            <p class="card-text"><small class="text-muted">Inventario: 25</small></p>
+                        </div>
+                        <div class="card-footer text-center">
+                             <button class="btn btn-sm btn-outline-secondary btn-details" data-bs-toggle="modal" data-bs-target="#detailsModal" data-product-id="13" data-i18n="card-btn-details">Ver Detalles</button>
+                             <button class="btn btn-sm btn-success add-to-cart-btn" data-nombre="Panqué de Calabaza Especiado" data-precio="120.00" data-product-id="13" data-i18n="card-btn-add">Añadir al Carrito</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 product-card">
+                        <img src="img/gingerbread_loaf.jpg" class="card-img-top" alt="Pan de Jengibre">
+                        <div class="card-body">
+                            <h5 class="card-title" data-product-id="14" data-i18n-key="name">Panqué de Jengibre y Melaza</h5>
+                            <p class="card-text" data-product-id="14" data-i18n-key="desc">Denso y aromático panqué con el toque picante del jengibre y la dulzura de la melaza.</p>
+                            <p class="card-text"><strong>Precio:</strong> $130.00 MXN (Entero)</p>
+                            <p class="card-text"><small class="text-muted">Inventario: 20</small></p>
+                        </div>
+                        <div class="card-footer text-center">
+                             <button class="btn btn-sm btn-outline-secondary btn-details" data-bs-toggle="modal" data-bs-target="#detailsModal" data-product-id="14" data-i18n="card-btn-details">Ver Detalles</button>
+                             <button class="btn btn-sm btn-success add-to-cart-btn" data-nombre="Panqué de Jengibre y Melaza" data-precio="130.00" data-product-id="14" data-i18n="card-btn-add">Añadir al Carrito</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 product-card">
+                        <img src="img/spice_bread.jpg" class="card-img-top" alt="Pan Especiado">
+                        <div class="card-body">
+                            <h5 class="card-title" data-product-id="15" data-i18n-key="name">Panqué de Especias de Otoño</h5>
+                            <p class="card-text" data-product-id="15" data-i18n-key="desc">Una mezcla reconfortante de especias otoñales en un panqué suave.</p>
+                            <p class="card-text"><strong>Precio:</strong> $115.00 MXN (Entero)</p>
+                            <p class="card-text"><small class="text-muted">Inventario: 28</small></p>
+                        </div>
+                        <div class="card-footer text-center">
+                             <button class="btn btn-sm btn-outline-secondary btn-details" data-bs-toggle="modal" data-bs-target="#detailsModal" data-product-id="15" data-i18n="card-btn-details">Ver Detalles</button>
+                             <button class="btn btn-sm btn-success add-to-cart-btn" data-nombre="Panqué de Especias de Otoño" data-precio="115.00" data-product-id="15" data-i18n="card-btn-add">Añadir al Carrito</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 product-card">
+                        <img src="img/pumpkin_chocolate_chip.jpg" class="card-img-top" alt="Pan Calabaza con Chocolate">
+                        <div class="card-body">
+                            <h5 class="card-title" data-product-id="16" data-i18n-key="name">Panqué Calabaza y Chispas Chocolate</h5>
+                            <p class="card-text" data-product-id="16" data-i18n-key="desc">La combinación perfecta de calabaza especiada y generosas chispas de chocolate.</p>
+                            <p class="card-text"><strong>Precio:</strong> $140.00 MXN (Entero)</p>
+                            <p class="card-text"><small class="text-muted">Inventario: 18</small></p>
+                        </div>
+                        <div class="card-footer text-center">
+                             <button class="btn btn-sm btn-outline-secondary btn-details" data-bs-toggle="modal" data-bs-target="#detailsModal" data-product-id="16" data-i18n="card-btn-details">Ver Detalles</button>
+                             <button class="btn btn-sm btn-success add-to-cart-btn" data-nombre="Panqué Calabaza y Chispas Chocolate" data-precio="140.00" data-product-id="16" data-i18n="card-btn-add">Añadir al Carrito</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 product-card">
+                        <img src="img/apple_cinnamon_bread.jpg" class="card-img-top" alt="Pan Manzana Canela">
+                        <div class="card-body">
+                            <h5 class="card-title" data-product-id="17" data-i18n-key="name">Panqué Manzana Canela</h5>
+                            <p class="card-text" data-product-id="17" data-i18n-key="desc">Trozos de manzana fresca y canela aromática horneados en un panqué tierno.</p>
+                            <p class="card-text"><strong>Precio:</strong> $135.00 MXN (Entero)</p>
+                            <p class="card-text"><small class="text-muted">Inventario: 22</small></p>
+                        </div>
+                        <div class="card-footer text-center">
+                             <button class="btn btn-sm btn-outline-secondary btn-details" data-bs-toggle="modal" data-bs-target="#detailsModal" data-product-id="17" data-i18n="card-btn-details">Ver Detalles</button>
+                             <button class="btn btn-sm btn-success add-to-cart-btn" data-nombre="Panqué Manzana Canela" data-precio="135.00" data-product-id="17" data-i18n="card-btn-add">Añadir al Carrito</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 product-card">
+                        <img src="img/pumpkin_cream_cheese.jpg" class="card-img-top" alt="Pan Calabaza Queso Crema">
+                        <div class="card-body">
+                            <h5 class="card-title" data-product-id="18" data-i18n-key="name">Panqué Calabaza con Queso Crema</h5>
+                            <p class="card-text" data-product-id="18" data-i18n-key="desc">Panqué de calabaza con un delicioso remolino de queso crema dulce.</p>
+                            <p class="card-text"><strong>Precio:</strong> $150.00 MXN (Entero)</p>
+                            <p class="card-text"><small class="text-muted">Inventario: 15</small></p>
+                        </div>
+                        <div class="card-footer text-center">
+                             <button class="btn btn-sm btn-outline-secondary btn-details" data-bs-toggle="modal" data-bs-target="#detailsModal" data-product-id="18" data-i18n="card-btn-details">Ver Detalles</button>
+                             <button class="btn btn-sm btn-success add-to-cart-btn" data-nombre="Panqué Calabaza con Queso Crema" data-precio="150.00" data-product-id="18" data-i18n="card-btn-add">Añadir al Carrito</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 product-card">
+                        <img src="img/banana_nut_bread.jpg" class="card-img-top" alt="Pan de Plátano con Nueces">
+                        <div class="card-body">
+                            <h5 class="card-title" data-product-id="19" data-i18n-key="name">Pan de Plátano con Nueces</h5>
+                            <p class="card-text" data-product-id="19" data-i18n-key="desc">Húmedo pan de plátano con trozos crujientes de nuez, popular en otoño.</p>
+                            <p class="card-text"><strong>Precio:</strong> $70.00 MXN (Entero)</p>
+                            <p class="card-text"><small class="text-muted">Inventario: 30</small></p>
+                        </div>
+                        <div class="card-footer text-center">
+                             <button class="btn btn-sm btn-outline-secondary btn-details" data-bs-toggle="modal" data-bs-target="#detailsModal" data-product-id="19" data-i18n="card-btn-details">Ver Detalles</button>
+                             <button class="btn btn-sm btn-success add-to-cart-btn" data-nombre="Pan de Plátano con Nueces" data-precio="70.00" data-product-id="19" data-i18n="card-btn-add">Añadir al Carrito</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 product-card">
+                        <img src="img/decorated_buns.jpg" class="card-img-top" alt="Panecillos de Halloween Decorados">
+                        <div class="card-body">
+                            <h5 class="card-title" data-product-id="20" data-i18n-key="name">Panecillos de Halloween Decorados</h5>
+                            <p class="card-text" data-product-id="20" data-i18n-key="desc">Tiernos panecillos decorados como fantasmas, momias y calabazas.</p>
+                            <p class="card-text"><strong>Precio:</strong> $50.00 MXN (Paquete)</p>
+                            <p class="card-text"><small class="text-muted">Inventario: 45</small></p>
+                        </div>
+                        <div class="card-footer text-center">
+                             <button class="btn btn-sm btn-outline-secondary btn-details" data-bs-toggle="modal" data-bs-target="#detailsModal" data-product-id="20" data-i18n="card-btn-details">Ver Detalles</button>
+                             <button class="btn btn-sm btn-success add-to-cart-btn" data-nombre="Panecillos de Halloween Decorados" data-precio="50.00" data-product-id="20" data-i18n="card-btn-add">Añadir al Carrito</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gestion" class="py-5" style="display: none;">
+        <div class="container">
+            <h2 class="text-center mb-4" data-i18n="section-title-manage">Gestión de Inventario</h2>
+            <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#productoModal">
+                <i class="fas fa-plus"></i> <span data-i18n="btn-add-product">Añadir Producto</span>
+            </button>
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th data-i18n="table-header-name">Nombre</th>
+                            <th data-i18n="table-header-category">Categoría</th>
+                            <th data-i18n="table-header-price">Precio</th>
+                            <th data-i18n="table-header-stock">Stock</th>
+                            <th data-i18n="table-header-actions">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablaProductosBody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer-custom text-center py-3">
+        <div class="container">
+            <p data-i18n="footer-text">&copy; 2024 Panadería La Desesperanza. Todos los derechos reservados.</p>
+            <p>
+                <a href="#" class="me-2"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="me-2"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </p>
+        </div>
+    </footer>
+
+    <div class="modal fade" id="loginTypeModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">¿Cómo deseas ingresar?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body text-center py-4">
+                    <div class="row g-3">
+                        <div class="col-6">
+                            <button class="btn btn-lg btn-outline-primary w-100 h-100 d-flex flex-column align-items-center justify-content-center py-4" id="btn-login-cliente">
+                                <i class="fas fa-user fa-3x mb-3"></i>
+                                <span class="fs-5">Soy Cliente</span>
+                            </button>
+                        </div>
+                        <div class="col-6">
+                            <button class="btn btn-lg btn-outline-warning w-100 h-100 d-flex flex-column align-items-center justify-content-center py-4" id="btn-login-admin">
+                                <i class="fas fa-user-shield fa-3x mb-3"></i>
+                                <span class="fs-5">Soy Administrador</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="loginClienteModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loginClienteTitle">Iniciar Sesión - Cliente</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="alert-cliente" class="alert d-none"></div>
+                    
+                    <form id="formLoginCliente" style="display: block;">
+                        <div class="mb-3">
+                            <label class="form-label">Correo Electrónico</label>
+                            <input type="email" class="form-control" id="loginClienteEmail" required>
+                            <div class="invalid-feedback">Ingresa un email válido</div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Contraseña</label>
+                            <input type="password" class="form-control" id="loginClientePassword" required>
+                            <div class="invalid-feedback">La contraseña es requerida</div>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Ingresar</button>
+                    </form>
+
+                    <form id="formRegistroCliente" style="display: none;">
+                        <div class="mb-3">
+                            <label class="form-label">Nombre Completo</label>
+                            <input type="text" class="form-control" id="registroClienteNombre" required>
+                            <div class="invalid-feedback">El nombre es requerido</div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Correo Electrónico</label>
+                            <input type="email" class="form-control" id="registroClienteEmail" required>
+                            <div class="invalid-feedback">Ingresa un email válido</div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Contraseña</label>
+                            <input type="password" class="form-control" id="registroClientePassword" required>
+                            <div class="invalid-feedback">Mínimo 6 caracteres</div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Confirmar Contraseña</label>
+                            <input type="password" class="form-control" id="registroClientePasswordConfirm" required>
+                            <div class="invalid-feedback">Las contraseñas no coinciden</div>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Registrarme</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-link" id="toggleClienteForm">¿No tienes cuenta? Regístrate</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="loginAdminModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-warning">
+                    <h5 class="modal-title"><i class="fas fa-shield-alt"></i> Iniciar Sesión - Administrador</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="alert-admin" class="alert d-none"></div>
+                    <form id="formLoginAdmin">
+                        <div class="mb-3">
+                            <label class="form-label">Correo Electrónico</label>
+                            <input type="email" class="form-control" id="loginAdminEmail" required>
+                            <div class="invalid-feedback">Ingresa un email válido</div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Contraseña de Administrador</label>
+                            <input type="password" class="form-control" id="loginAdminPassword" required>
+                            <div class="invalid-feedback">Contraseña requerida</div>
+                        </div>
+                        <div class="alert alert-warning">
+                            <i class="fas fa-exclamation-triangle"></i> 
+                            Solo personal autorizado puede acceder como administrador
+                        </div>
+                        <button type="submit" class="btn btn-warning w-100">
+                            <i class="fas fa-lock"></i> Ingresar como Admin
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="cartModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" data-i18n="cart-title"><i class="fas fa-shopping-cart"></i> Tu Carrito de Compras</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="cartItemsContainer">
+                        <p class="text-center text-muted" data-i18n="cart-empty">Tu carrito está vacío.</p>
+                    </div>
+                    <hr>
+                    <div class="text-end">
+                        <h5>Total: $<span id="cartTotal">0.00</span> MXN</h5>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-i18n="btn-continue-shopping">Seguir Comprando</button>
+                    <button type="button" class="btn btn-danger" id="clearCartBtn" data-i18n="btn-empty-cart">Vaciar Carrito</button>
+                    <button type="button" class="btn btn-primary" id="checkoutBtn" data-i18n="btn-checkout">Proceder al Pago</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="productoModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="productoModalLabel">Añadir Nuevo Producto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="alert-producto" class="alert d-none"></div>
+                    <form id="productoForm">
+                        <input type="hidden" id="productoId">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Nombre del Producto</label>
+                                <input type="text" class="form-control" id="productoNombre" required>
+                                <div class="invalid-feedback">El nombre es requerido</div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Categoría</label>
+                                <select class="form-select" id="productoCategoria" required>
+                                    <option value="">Selecciona una categoría</option>
+                                    <option value="dia_muertos">Día de Muertos</option>
+                                    <option value="halloween">Halloween</option>
+                                </select>
+                                <div class="invalid-feedback">Selecciona una categoría</div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Descripción</label>
+                            <textarea class="form-control" id="productoDescripcion" rows="3" required></textarea>
+                            <div class="invalid-feedback">La descripción es requerida</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Precio (MXN)</label>
+                                <input type="number" step="0.01" min="0.01" class="form-control" id="productoPrecio" required>
+                                <div class="invalid-feedback">Ingresa un precio válido mayor a 0</div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Stock</label>
+                                <input type="number" min="0" class="form-control" id="productoStock" required>
+                                <div class="invalid-feedback">Ingresa un stock válido (0 o mayor)</div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">URL de la Imagen</label>
+                            <input type="text" class="form-control" id="productoImagen" placeholder="img/nombre_archivo.jpg">
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="productoActivo" checked>
+                            <label class="form-check-label" for="productoActivo">Producto Activo</label>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-primary">Guardar Producto</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="detailsModal" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Detalles del Producto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img src="" id="detailsModalImage" class="img-fluid rounded" alt="Imagen del producto">
+                        </div>
+                        <div class="col-md-6">
+                            <h3 id="detailsModalTitle" class="mt-3 mt-md-0">Título del Producto</h3>
+                            <p id="detailsModalDescription">Descripción detallada del producto...</p>
+                            <hr>
+                            <h4>Precio: <span id="detailsModalPrice" class="text-success">$0.00 MXN</span></h4>
+                            <p>Inventario: <span id="detailsModalStock" class="fw-bold">0</span></p>
+                            <div class="d-grid mt-4">
+                                <button class="btn btn-success btn-lg add-to-cart-btn" id="detailsModalAddToCartBtn" data-nombre="" data-precio="0.00">Añadir al Carrito</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script src="deseperanzaa_BHR.js"></script>
+</body>
+</html>
