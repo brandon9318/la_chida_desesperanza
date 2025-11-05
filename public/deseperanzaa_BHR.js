@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
     async function cargarProductosDelServidor() {
         try {
             // ✅ CAMBIO CLAVE: quitamos 'http://localhost:3000' → solo '/api/...' -bynd
-            const response = await fetch('/api/productos', { credentials: 'include' });
+            const response = await fetch('https://la-chida-desesperanza.onrender.com/api/productos', { credentials: 'include' });
             if (!response.ok) {
                 throw new Error('Chintrolas, no pude cargar los productos 😿');
             }
@@ -690,3 +690,4 @@ document.addEventListener('DOMContentLoaded', function() {
 
     inicializar();
 });
+
