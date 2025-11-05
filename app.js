@@ -25,7 +25,7 @@ app.use(express.static('public'));
 
 // 🏠 servir index.html
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    res.sendFile(path.join(__dirname, 'public', 'index_deseperanzaa_BHR.html'));
 });
 
 // 💾 POOL DE CONEXIÓN POSTGRESQL pa' Render
@@ -343,3 +343,4 @@ app.listen(PORT, () => {
     console.log(`PostgreSQL: ${process.env.DATABASE_URL ? '✅ Render (production)' : '✅ Local'}`);
     console.log(`Frontend esperado en: ${process.env.FRONTEND_URL || 'http://127.0.0.1:5500'}`);
 });
+
