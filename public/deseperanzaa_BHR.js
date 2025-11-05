@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // fokeis esta función ahora usa rutas RELATIVAS (sin localhost) -bynd
     async function cargarProductosDelServidor() {
         try {
-            // ✅ CAMBIO CLAVE: quitamos 'http://localhost:3000' → solo '/api/...' -bynd
+           
             const response = await fetch('https://la-chida-desesperanza.onrender.com/api/productos', { credentials: 'include' });
             if (!response.ok) {
                 throw new Error('Chintrolas, no pude cargar los productos 😿');
@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // ✅ IMPORTANTE: todas las llamadas a fetch usan rutas RELATIVAS
     async function loginCliente(email, password) {
-        const response = await fetch('/api/login-cliente', {
+        const response = await fetch('https://la-chida-desesperanza.onrender.com/api/login-cliente', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email, password }),
@@ -127,7 +127,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     async function loginAdmin(email, password) {
-        const response = await fetch('/api/login-admin', {
+        const response = await fetch('https://la-chida-desesperanza.onrender.com/api/login-admin', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email, password }),
@@ -137,11 +137,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     async function logout() {
-        await fetch('/api/logout', { method: 'POST', credentials: 'include' });
+        await fetch('https://la-chida-desesperanza.onrender.com/api/logout', { method: 'POST', credentials: 'include' });
     }
 
     async function gestionProducto(datos, id = null, esEliminar = false) {
-        let url = '/api/productos';
+        let url = 'https://la-chida-desesperanza.onrender.com/api/productos';
         let method = 'POST';
         if (id) url += `/${id}`;
         if (esEliminar) method = 'DELETE';
@@ -690,4 +690,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     inicializar();
 });
+
+
 
