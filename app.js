@@ -14,12 +14,10 @@ const allowedOrigins = [
 
 app.use(cors({
     origin: function (origin, callback) {
-        // Permite solicitudes sin origin (como mobile apps o Postman)
-        if (!origin) return callback(null, true);
-        if (allowedOrigins.indexOf(origin) !== -1) {
+        if (!origin || allowedOrigins.indexOf(origin) !== -1) {
             callback(null, true);
         } else {
-            callback(new Error('CORS no permitido para este origen'));
+            callback(new Error('CORS no permitido'));
         }
     },
     credentials: true
@@ -145,4 +143,3 @@ app.listen(PORT, '0.0.0.0', () => {
     console.log(`🍞 Panadería La Desesperanza prendida en el puerto ${PORT}`);
     console.log(`🌍 Servidor público: https://la-chida-desesperanza.onrender.com`);
 });
-
