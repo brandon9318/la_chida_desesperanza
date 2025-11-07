@@ -1,6 +1,4 @@
-/* aaa estilos de la panadería -bynd */
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Pacifico&display=swap');
-
 :root {
     --color-primary: #8B4513;
     --color-secondary: #D2691E;
@@ -26,8 +24,6 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
     color: var(--color-primary);
 }
-
-/* chintrolas navbar -bynd */
 .navbar {
     background-color: var(--color-primary) !important;
     border-bottom: 5px solid var(--color-accent);
@@ -69,8 +65,6 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 0.65em;
     padding: 0.2em 0.4em;
 }
-
-/* fokeis dropdown -bynd */
 .dropdown-item img {
     margin-right: 8px;
     vertical-align: middle;
@@ -93,8 +87,6 @@ h1, h2, h3, h4, h5, h6 {
     background-color: var(--color-secondary);
     color: #fff;
 }
-
-/* vavavava header -bynd */
 header {
     background: linear-gradient(135deg, #ffffff 0%, var(--color-bg) 100%);
     color: var(--color-text);
@@ -114,8 +106,6 @@ header p.lead {
     color: var(--color-secondary);
     font-size: 1.2rem;
 }
-
-/* ey productos -bynd */
 #productos h2.text-center {
     font-family: var(--font-heading);
     font-size: 2.5rem;
@@ -157,8 +147,6 @@ header p.lead {
     border-color: #343a40;
     color: #fff;
 }
-
-/* q chidoteee tarjetas de productos -bynd */
 .product-card {
     background-color: #fff;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -209,8 +197,6 @@ header p.lead {
     border-top: 1px solid #eee;
     padding: 0.75rem 1rem;
 }
-
-/* chincheros botones -bynd */
 .btn-primary,
 .btn-success {
     background-color: var(--color-primary);
@@ -285,8 +271,6 @@ header p.lead {
     border-color: var(--color-secondary);
     color: #fff !important;
 }
-
-/* ala gestión -bynd */
 #gestion {
     background-color: #fff;
     border-top: 3px solid var(--color-primary);
@@ -332,8 +316,6 @@ header p.lead {
 #gestion .btn-sm i {
     font-size: 0.9rem;
 }
-
-/* fokeis modales -bynd */
 .modal-header {
     background-color: var(--color-bg);
     border-bottom: 2px solid var(--color-primary);
@@ -364,8 +346,6 @@ header p.lead {
     background-color: var(--color-bg);
     border-top: 1px solid #eee;
 }
-
-/* aaa modal login tipo ARREGLADO -bynd */
 #loginTypeModal .btn-outline-primary,
 #loginTypeModal .btn-outline-warning {
     min-height: 150px;
@@ -382,8 +362,6 @@ header p.lead {
     transform: scale(1.05);
     box-shadow: 0 5px 15px rgba(255, 193, 7, 0.3);
 }
-
-/* chintrolas forms -bynd */
 .form-control:focus,
 .form-select:focus {
     border-color: var(--color-secondary);
@@ -396,8 +374,6 @@ header p.lead {
     font-size: 0.875em;
     margin-top: 0.25rem;
 }
-
-/* vavavava footer -bynd */
 footer.footer-custom {
     background-color: var(--color-primary);
     color: var(--color-bg);
@@ -420,8 +396,6 @@ footer.footer-custom a:hover {
 footer.footer-custom a i {
     font-size: 1.5rem;
 }
-
-/* ey carrito -bynd */
 #cart-count {
     background-color: var(--color-accent) !important;
     color: var(--color-text);
@@ -495,8 +469,6 @@ footer.footer-custom a i {
 #cartModal .modal-footer .btn {
     margin-left: 0.5rem;
 }
-
-/* q chidoteee modal detalles -bynd */
 #detailsModal .modal-header {
     background-color: var(--color-secondary);
     color: #fff;
@@ -593,14 +565,10 @@ footer.footer-custom a i {
 ::-webkit-scrollbar-thumb:hover {
     background: var(--color-primary);
 }
-
-/* chincheros user role badge -bynd */
 #user-role {
     font-size: 0.75rem;
     padding: 0.25rem 0.5rem;
 }
-
-/* ey alertas -bynd */
 .alert.position-fixed {
     min-width: 300px;
     z-index: 9999;
