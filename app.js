@@ -1,12 +1,9 @@
-// aaa app.js final pa' Render con PostgreSQL -bynd
 const express = require('express');
 const { Pool } = require('pg');
 const cors = require('cors');
 const path = require('path');
 
 const app = express();
-
-// 👂 CORS CORREGIDO: acepta tu frontend local Y Render
 const allowedOrigins = [
     'http://127.0.0.1:5500',
     'https://la-chida-desesperanza.onrender.com'
@@ -22,33 +19,21 @@ app.use(cors({
     },
     credentials: true
 }));
-
-// 📦 JSON
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-// 📁 servir archivos estáticos
 app.use(express.static('public'));
-
-// 🏠 servir index.html
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index_deseperanzaa_BHR.html'));
 });
-
-// 💾 CONEXIÓN A POSTGRESQL EN RENDER
 const pool = new Pool({
     connectionString: process.env.DATABASE_URL,
     ssl: {
         rejectUnauthorized: false
     }
 });
-
-// ✅ prueba de conexión
 pool.connect()
-    .then(() => console.log('✅ Conectado a PostgreSQL en Render'))
+    .then(() => console.log('Conectado a PostgreSQL en Render'))
     .catch(err => console.error('Fokeis al conectar a PostgreSQL:', err));
-
-// 🍞 API: productos (PostgreSQL style)
 app.get('/api/productos', async (req, res) => {
     try {
         const { rows } = await pool.query(`
@@ -88,8 +73,6 @@ app.get('/api/productos', async (req, res) => {
         res.status(500).json({ success: false, message: 'Error en el servidor' });
     }
 });
-
-// 🔐 login cliente (simulado pa' pruebas)
 app.post('/api/login-cliente', (req, res) => {
     const { email, password } = req.body;
     if (email === 'cliente@demo.com' && password === 'demo123') {
@@ -101,8 +84,6 @@ app.post('/api/login-cliente', (req, res) => {
         res.status(401).json({ success: false, message: 'Credenciales inválidas' });
     }
 });
-
-// 🔐 login admin (simulado pa' pruebas)
 app.post('/api/login-admin', (req, res) => {
     const { email, password } = req.body;
     if (email === 'admin@panaderia.com' && password === 'admin123') {
@@ -114,32 +95,23 @@ app.post('/api/login-admin', (req, res) => {
         res.status(401).json({ success: false, message: 'Acceso denegado' });
     }
 });
-
-// 🚪 logout
 app.post('/api/logout', (req, res) => {
     res.json({ success: true, message: 'Sesión cerrada' });
 });
-
-// ➕ crear producto (simulado)
 app.post('/api/productos', (req, res) => {
     res.json({ success: true, message: 'Producto creado (simulado)', id: Date.now() });
 });
-
-// ✏️ actualizar producto (simulado)
 app.put('/api/productos/:id', (req, res) => {
     res.json({ success: true, message: `Producto ${req.params.id} actualizado (simulado)` });
 });
-
-// ❌ eliminar producto (simulado)
 app.delete('/api/productos/:id', (req, res) => {
     const id = req.params.id;
     if (isNaN(id)) return res.status(400).json({ success: false, message: 'ID inválido' });
     res.json({ success: true, message: `Producto ${id} eliminado (simulado)` });
 });
-
-// 🚀 puerto dinámico pa' Render
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, '0.0.0.0', () => {
-    console.log(`🍞 Panadería La Desesperanza prendida en el puerto ${PORT}`);
-    console.log(`🌍 Servidor público: https://la-chida-desesperanza.onrender.com`);
+    console.log(`Panadería La Desesperanza prendida en el puerto ${PORT}`);
+    console.log(`Servidor público: https://la-chida-desesperanza.onrender.com`);
 });
+
