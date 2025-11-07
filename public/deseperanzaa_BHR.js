@@ -1,10 +1,5 @@
-// aaa este es el archivo principal de la panadería con Render -bynd
 document.addEventListener('DOMContentLoaded', function() {
-
-    // chintrolas URL de la API en Render -bynd
     const API_URL = 'https://la-chida-desesperanza.onrender.com';
-
-    // fokeis diccionario de traducciones -bynd
     const translations = {
         'nav-home': { es: 'Inicio', en: 'Home' },
         'nav-products': { es: 'Productos', en: 'Products' },
@@ -26,11 +21,9 @@ document.addEventListener('DOMContentLoaded', function() {
         'checkout-success': { es: '¡Pago exitoso! Gracias por tu compra.', en: 'Payment successful! Thank you for your purchase.'},
         'checkout-empty-error': { es: 'El carrito está vacío. Añade productos antes de pagar.', en: 'Cart is empty. Please add products before checking out.'}
     };
-    
-    // q chidoteee esta función pide los panes de PostgreSQL en Render -bynd
+
     async function cargarProductosDelServidor() {
         try {
-            // vavavava conectamos con Render tvhin -bynd
             const response = await fetch(`${API_URL}/api/productos`, { 
                 credentials: 'include',
                 headers: {
@@ -39,13 +32,13 @@ document.addEventListener('DOMContentLoaded', function() {
             });
             
             if (!response.ok) {
-                throw new Error('Chintrolas, no pude cargar los productos 😿');
+                throw new Error(no pude cargar los productos');
             }
             
             const data = await response.json();
             
             if (data.success && data.productos) {
-                // ala convertimos los datos de PostgreSQL -bynd
+                
                 return data.productos.map(p => ({
                     id: p.producto_id,
                     category: p.categoria,
@@ -62,28 +55,20 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         } catch (error) {
             console.error('Errorzote en fetch:', error);
-            // chincheros si falla, mostramos mensaje al usuario -bynd
-            mostrarNotificacion('Error al cargar productos. Verifica tu conexión 😿');
+            mostrarNotificacion('Error al cargar productos. Verifica tu conexión');
             return [];
         }
     }
-
-    // ey variables globales -bynd
     let carrito = obtenerCarrito();
     let currentLang = localStorage.getItem('panaderiaLang') || 'es';
     let currentUser = obtenerUsuarioActual();
     let productos = [];
     
-
-    // --- SISTEMA DE AUTENTICACIÓN -bynd ---
-    
-    // chincheros función para obtener usuario actual -bynd
     function obtenerUsuarioActual() {
         const user = localStorage.getItem('currentUser');
         return user ? JSON.parse(user) : null;
     }
 
-    // q chidoteee función para guardar usuario -bynd
     function guardarUsuarioActual(user) {
         if (user) {
             localStorage.setItem('currentUser', JSON.stringify(user));
@@ -109,14 +94,11 @@ document.addEventListener('DOMContentLoaded', function() {
     function guardarUsuarios(users) {
         localStorage.setItem('usuariosPanaderia', JSON.stringify(users));
     }
-
-    // fokeis función de validación de email -bynd
     function validarEmail(email) {
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return regex.test(email);
     }
 
-    // vavavava función para mostrar alertas en modales -bynd
     function mostrarAlerta(containerId, mensaje, tipo = 'danger') {
         const container = document.getElementById(containerId);
         if (!container) return;
@@ -130,18 +112,15 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 4000);
     }
 
-    // --- MANEJADORES DE MODALES DE LOGIN -bynd ---
-
     const btnLoginCliente = document.getElementById('btn-login-cliente');
     const btnLoginAdmin = document.getElementById('btn-login-admin');
     const loginTypeModal = document.getElementById('loginTypeModal');
     const loginClienteModal = document.getElementById('loginClienteModal');
     const loginAdminModal = document.getElementById('loginAdminModal');
 
-    // aaa botón cliente arreglado tvhin -bynd
     if (btnLoginCliente) {
         btnLoginCliente.addEventListener('click', function() {
-            console.log('Click en botón cliente 😸');
+            console.log('Click en botón cliente');
             const typeModalInstance = bootstrap.Modal.getInstance(loginTypeModal);
             if (typeModalInstance) typeModalInstance.hide();
             
@@ -151,11 +130,9 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 300);
         });
     }
-
-    // chincheros botón admin arreglado niggi -bynd
     if (btnLoginAdmin) {
         btnLoginAdmin.addEventListener('click', function() {
-            console.log('Click en botón admin 😻');
+            console.log('Click en botón admin');
             const typeModalInstance = bootstrap.Modal.getInstance(loginTypeModal);
             if (typeModalInstance) typeModalInstance.hide();
             
@@ -191,7 +168,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // fokeis formulario de login cliente conectado a Render -bynd
     if (formLoginCliente) {
         formLoginCliente.addEventListener('submit', async function(e) {
             e.preventDefault();
@@ -208,7 +184,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             
             try {
-                // q chidoteee llamamos a tu API de Render tvhin -bynd
                 const response = await fetch(`${API_URL}/api/login-cliente`, {
                     method: 'POST',
                     headers: { 
@@ -223,7 +198,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (data.success) {
                     guardarUsuarioActual(data.user);
                     actualizarUIUsuario();
-                    mostrarAlerta('alert-cliente', '¡Bienvenido! Iniciando sesión... 😸', 'success');
+                    mostrarAlerta('alert-cliente', '¡Bienvenido! Iniciando sesión...', 'success');
                     setTimeout(() => {
                         const modalInstance = bootstrap.Modal.getInstance(loginClienteModal);
                         if (modalInstance) modalInstance.hide();
@@ -234,12 +209,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             } catch (error) {
                 console.error('Error de login:', error);
-                mostrarAlerta('alert-cliente', 'Error al conectar con el servidor 😿', 'danger');
+                mostrarAlerta('alert-cliente', 'Error al conectar con el servidor', 'danger');
             }
         });
     }
-
-    // ala formulario de registro cliente -bynd
     if (formRegistroCliente) {
         formRegistroCliente.addEventListener('submit', function(e) {
             e.preventDefault();
@@ -275,7 +248,7 @@ document.addEventListener('DOMContentLoaded', function() {
             usuarios.push(nuevoUsuario);
             guardarUsuarios(usuarios);
             guardarUsuarioActual(nuevoUsuario);
-            mostrarAlerta('alert-cliente', '¡Registro exitoso! Bienvenido 😸', 'success');
+            mostrarAlerta('alert-cliente', '¡Registro exitosoo! Bienvenido', 'success');
             actualizarUIUsuario();
             
             setTimeout(() => {
@@ -290,8 +263,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 1500);
         });
     }
-
-    // vavavava formulario de login admin conectado a Render -bynd
     if (formLoginAdmin) {
         formLoginAdmin.addEventListener('submit', async function(e) {
             e.preventDefault();
@@ -308,7 +279,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             
             try {
-                // chincheros llamamos a tu API de Render para admin -bynd
                 const response = await fetch(`${API_URL}/api/login-admin`, {
                     method: 'POST',
                     headers: { 
@@ -323,7 +293,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (data.success) {
                     guardarUsuarioActual(data.user);
                     actualizarUIUsuario();
-                    mostrarAlerta('alert-admin', '¡Bienvenido Administrador! 😻', 'success');
+                    mostrarAlerta('alert-admin', '¡Bienvenido Administrador!', 'success');
                     setTimeout(() => {
                         const modalInstance = bootstrap.Modal.getInstance(loginAdminModal);
                         if (modalInstance) modalInstance.hide();
@@ -334,18 +304,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             } catch (error) {
                 console.error('Error de login admin:', error);
-                mostrarAlerta('alert-admin', 'Error al conectar con el servidor 😿', 'danger');
+                mostrarAlerta('alert-admin', 'Error al conectar con el servidor', 'danger');
             }
         });
     }
-
-    // ey botón de logout conectado a Render -bynd
     const btnLogout = document.getElementById('btn-logout');
     if (btnLogout) {
         btnLogout.addEventListener('click', async function() {
             if (confirm('¿Seguro que deseas cerrar sesión?')) {
                 try {
-                    // fokeis le avisamos a Render que cerramos sesión -bynd
                     await fetch(`${API_URL}/api/logout`, { 
                         method: 'POST',
                         credentials: 'include',
@@ -360,12 +327,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 guardarUsuarioActual(null);
                 actualizarUIUsuario();
                 vaciarCarrito();
-                mostrarNotificacion('Sesión cerrada 😺');
+                mostrarNotificacion('Sesión cerrada');
             }
         });
     }
-
-    // aaa función para actualizar UI según usuario -bynd
     function actualizarUIUsuario() {
         const navLoginItem = document.getElementById('nav-login-item');
         const navUserInfo = document.getElementById('nav-user-info');
@@ -398,8 +363,6 @@ document.addEventListener('DOMContentLoaded', function() {
             if (seccionGestion) seccionGestion.style.display = 'none';
         }
     }
-
-    // --- FUNCIONES DEL CARRITO -bynd ---
     function obtenerCarrito() {
         const carritoGuardado = localStorage.getItem('carritoPanaderia');
         return carritoGuardado ? JSON.parse(carritoGuardado) : [];
@@ -411,7 +374,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     function agregarAlCarrito(nombre, precio, productId) {
         if (!currentUser) {
-            alert('Debes iniciar sesión para agregar productos al carrito 😿');
+            alert('Debes iniciar sesión para agregar productos al carrito');
             return;
         }
         
@@ -424,7 +387,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         guardarCarrito();
         actualizarVistaCarrito();
-        mostrarNotificacion(`${nombre} añadido al carrito! 😸`);
+        mostrarNotificacion(`${nombre} añadido al carrito!`);
     }
     
     function actualizarVistaCarrito() {
@@ -498,7 +461,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     function procederAlPago() {
         if (!currentUser) {
-            alert('Debes iniciar sesión para proceder al pago 😿');
+            alert('Debes iniciar sesión para proceder al pago');
             return;
         }
         if (carrito.length === 0) {
@@ -508,7 +471,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         const total = carrito.reduce((sum, item) => sum + item.precio * item.cantidad, 0);
         
-        if (confirm(`Total a pagar: $${total.toFixed(2)} MXN\n¿Confirmar compra? 😸`)) {
+        if (confirm(`Total a pagar: $${total.toFixed(2)} MXN\n¿Confirmar compra?`)) {
             alert(translations['checkout-success'][currentLang]);
             vaciarCarrito();
             
@@ -531,9 +494,6 @@ document.addEventListener('DOMContentLoaded', function() {
             notification.remove();
         }, 2000);
     }
-
-    // --- FUNCIONES DE GESTIÓN DE PRODUCTOS (CRUD con PostgreSQL en Render) -bynd ---
-    
     function cargarTablaProductos() {
         const tbody = document.getElementById('tablaProductosBody');
         if (!tbody) return;
@@ -569,10 +529,8 @@ document.addEventListener('DOMContentLoaded', function() {
             btn.addEventListener('click', () => eliminarProducto(btn.dataset.id));
         });
     }
-
-    // chincheros función para eliminar producto en PostgreSQL -bynd
     window.eliminarProducto = async function(id) {
-        if (confirm('¿Estás seguro de eliminar este producto? 😿')) {
+        if (confirm('¿Estás seguro de eliminar este producto?')) {
             try {
                 const response = await fetch(`${API_URL}/api/productos/${id}`, {
                     method: 'DELETE',
@@ -584,26 +542,24 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 if (response.status === 403 || response.status === 401) {
                     const errData = await response.json();
-                    throw new Error(errData.message || 'Chincheros, no tienes permiso 😾');
+                    throw new Error(errData.message || 'Chincheros, no tienes permiso');
                 }
 
                 const data = await response.json();
                 
                 if (data.success) {
-                    alert('Producto eliminado 😸');
+                    alert('Producto eliminado');
                     productos = await cargarProductosDelServidor();
                     cargarTablaProductos();
                     updateTranslations();
                 } else {
-                    alert(data.message || 'No se pudo eliminar 😾');
+                    alert(data.message || 'No se pudo eliminar');
                 }
             } catch (error) {
                 alert(error.message);
             }
         }
     };
-
-    // q chidoteee función para ver detalles producto -bynd
     function verDetallesProducto(productId) {
         const producto = productos.find(p => p.id === parseInt(productId));
         
@@ -627,8 +583,6 @@ document.addEventListener('DOMContentLoaded', function() {
             detailsModal.show();
         }
     }
-
-    // --- EVENT LISTENERS -bynd ---
     
     const checkoutBtn = document.getElementById('checkoutBtn');
     if (checkoutBtn) {
@@ -638,13 +592,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const clearCartBtn = document.getElementById('clearCartBtn');
     if (clearCartBtn) {
         clearCartBtn.addEventListener('click', function() {
-            if (confirm('¿Vaciar el carrito? 😿')) {
+            if (confirm('¿Vaciar el carrito?')) {
                 vaciarCarrito();
             }
         });
     }
-
-    // vavavava delegación de eventos para botones dinámicos -bynd
     document.body.addEventListener('click', function(event) {
         const detailsButton = event.target.closest('.btn-details');
         if (detailsButton) {
@@ -671,8 +623,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     });
-
-    // aaa cambio de idioma -bynd
     document.querySelectorAll('.dropdown-menu a.dropdown-item').forEach(item => {
         item.addEventListener('click', function(e) {
             e.preventDefault();
@@ -685,8 +635,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-
-    // ey cambio entre secciones de temporada -bynd
     const btnDiaMuertos = document.getElementById('btnDiaMuertos');
     const btnHalloween = document.getElementById('btnHalloween');
     const seccionDiaMuertos = document.getElementById('productosDiaMuertos'); 
@@ -710,8 +658,6 @@ document.addEventListener('DOMContentLoaded', function() {
             mostrarSeccion(seccionHalloween, seccionDiaMuertos, btnHalloween, btnDiaMuertos);
         });
     }
-
-    // chintrolas scroll suave a secciones -bynd
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const href = this.getAttribute('href');
@@ -727,8 +673,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-
-    // fokeis función de traducción -bynd
     function updateTranslations() {
         document.querySelectorAll('[data-i18n]').forEach(element => {
             const key = element.getAttribute('data-i18n');
@@ -778,40 +722,26 @@ document.addEventListener('DOMContentLoaded', function() {
         const btnCheckout = document.querySelector('[data-i18n="btn-checkout"]');
         if(btnCheckout) btnCheckout.textContent = translations['btn-checkout'][currentLang];
     }
-
-    // --- INICIALIZACIÓN -bynd ---
-    
-    // vavavava inicializar todo al cargar conectado a Render tvhin -bynd
     async function inicializar() {
-        console.log('🍞 Iniciando sistema de Panadería La Desesperanza...');
-        console.log('🌐 Conectando con:', API_URL);
-        
-        // 1. Cargamos los productos desde PostgreSQL en Render -bynd
+        console.log('Iniciando sistema de Panadería La Desesperanza...');
+        console.log('Conectando con:', API_URL);
         productos = await cargarProductosDelServidor();
-        console.log(`📦 ${productos.length} productos cargados desde PostgreSQL`);
-
-        // 2. Actualizamos la UI del usuario -bynd
+        console.log(` ${productos.length} productos cargados desde PostgreSQL`);
         actualizarUIUsuario();
-        
-        // 3. Actualizamos el carrito -bynd
         actualizarVistaCarrito();
-        
-        // 4. Traducimos todo -bynd
         updateTranslations();
         
-        console.log('✅ Sistema iniciado correctamente');
-        console.log('👤 Usuario actual:', currentUser ? currentUser.nombre : 'No logueado');
-        console.log('🛒 Productos en carrito:', carrito.length);
-        
-        // q chidoteee mostramos mensaje si hay productos -bynd
+        console.log('Sistema iniciado correctamente');
+        console.log('Usuario actual:', currentUser ? currentUser.nombre : 'No logueado');
+        console.log('Productos en carrito:', carrito.length);
+
         if (productos.length > 0) {
-            mostrarNotificacion('Productos cargados correctamente 😸');
+            mostrarNotificacion('Productos cargados correctamente');
         } else {
-            mostrarNotificacion('No se pudieron cargar los productos 😿');
+            mostrarNotificacion('No se pudieron cargar los productos');
         }
     }
-    
-    // aaa aquí llamamos a la función de inicialización niggi -bynd
     inicializar();
 
 });
+
